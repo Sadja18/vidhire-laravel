@@ -17,6 +17,14 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/about', function () {
+    return view('data.about');
+})->name('about');
+
+Route::get('/guides', function () {
+    return view('data.guides');
+})->name('guides');
+
 // ---------------------
 // Authenticated Routes
 // ---------------------
