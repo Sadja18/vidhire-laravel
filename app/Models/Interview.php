@@ -30,4 +30,9 @@ class Interview extends Model
     {
         return $this->hasMany(Submission::class);
     }
+
+    public function candidateLinks()
+    {
+        return $this->hasMany(CandidateLink::class);
+    }
 }

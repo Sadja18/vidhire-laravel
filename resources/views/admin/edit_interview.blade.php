@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Edit Interview</h1>
 
-    <form method="POST" action="{{ route('interviews.update', $interview->id) }}">
+    <form method="POST" action="{{ route('admin.interviews.update', $interview->id) }}">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -26,7 +26,7 @@
         <button class="btn btn-primary">Update Interview</button>
     </form>
 
-    <form method="POST" action="{{ route('interviews.destroy', $interview->id) }}" class="mt-2">
+    <form method="POST" action="{{ route('admin.interviews.destroy', $interview->id) }}" class="mt-2">
         @csrf
         @method('DELETE')
         <button class="btn btn-danger">Delete Interview</button>

@@ -26,7 +26,7 @@
                 <td>{{ $link->candidate->name }} ({{ $link->candidate->email }})</td>
                 <td>{{ $link->token }}</td>
                 <td>
-                    <form action="{{ route('candidate_links.destroy', $link->id) }}" method="POST" style="display:inline-block;">
+                    <form action="{{ route('admin.candidate_links.destroy', $link->id) }}" method="POST" style="display:inline-block;">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>

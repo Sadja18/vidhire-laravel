@@ -17,8 +17,16 @@ class AdminController extends Controller
         /** @var \App\Models\User $admin */
         $admin = Auth::user();
 
-        $interviews = $admin->interviews()->latest()->get(); // admin-created interviews
-        return view('admin.dashboard', compact('interviews'));
+        // $interviews = $admin->interviews()->latest()->get(); // admin-created interviews
+        // return view('admin.dashboard', compact('interviews'));
+        $interviews = $admin->interviews()
+            ->withCount('candidateLinks') // counts links per interview
+            ->latest()
+            ->get();
+
+        $totalCandidates = \App\Models\User::where('role', 'candidate')->count();
+
+        return view('admin.dashboard', compact('interviews', 'totalCandidates'));
     }
 
     public function create()
@@ -108,15 +116,25 @@ class AdminController extends Controller
         return redirect()->route('admin.dashboard')->with('success', 'Candidate link generated: ' . $token);
     }
 
-    public function candidateLinksDashboard()
+    // public function candidateLinksDashboard()
+    // {
+    //     $links = \App\Models\CandidateLink::with(['interview', 'candidate'])->latest()->get();
+    //     return view('admin.candidate_links_dashboard', compact('links'));
+    // }
+    public function candidateLinksDashboard($interviewId)
     {
-        $links = \App\Models\CandidateLink::with(['interview', 'candidate'])->latest()->get();
+        $links = \App\Models\CandidateLink::with(['interview', 'candidate'])
+            ->where('interview_id', $interviewId)
+            ->latest()
+            ->get();
+
         return view('admin.candidate_links_dashboard', compact('links'));
     }
+
 
     public function destroyCandidateLink(\App\Models\CandidateLink $link)
     {
         $link->delete();
-        return redirect()->route('candidate_links.dashboard')->with('success', 'Candidate link deleted.');
+        return redirect()->route('admin.candidate_links.dashboard')->with('success', 'Candidate link deleted.');
     }
 }

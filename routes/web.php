@@ -44,8 +44,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/interviews/{interview}/generate-link', [AdminController::class, 'storeCandidateLink'])
             ->name('interviews.store_candidate_link');
 
-        Route::get('/candidate-links', [AdminController::class, 'candidateLinksDashboard'])
+        // Route::get('/candidate-links', [AdminController::class, 'candidateLinksDashboard'])
+        //     ->name('candidate_links.dashboard');
+        Route::get('admin/interviews/{interview}/candidate-links', [AdminController::class, 'candidateLinksDashboard'])
             ->name('candidate_links.dashboard');
+
         Route::delete('/candidate-links/{link}', [AdminController::class, 'destroyCandidateLink'])
             ->name('candidate_links.destroy');
     });

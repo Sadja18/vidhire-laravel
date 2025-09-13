@@ -46,6 +46,11 @@ class AuthController extends Controller
     public function dashboard()
     {
         $role = Auth::user()->role;
-        return view('dashboard', compact('role'));
+        return match($role) {
+            'admin' => redirect()->route('admin.dashboard'),
+            'reviewer' => redirect()->route('reviewer.dashboard'),
+            'candidate' => redirect()->route('candidate.dashboard'),
+            default => redirect('/dashboard'),
+        };
     }
 }
