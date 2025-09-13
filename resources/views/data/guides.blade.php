@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Candidate Guide</h5>
                     <p class="card-text">Record your answer, submit video, wait for feedback.</p>
-                    {{-- <a href="{{ asset('guide-files/candidate-guide.pdf') }}" target="_blank" class="btn btn-success">View PDF</a> --}}
+                    <a href="{{ asset('guide-files/candidate-guide.pdf') }}" target="_blank" class="btn btn-success">View PDF</a>
                 </div>
             </div>
         </div>
