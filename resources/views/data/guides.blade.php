@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Reviewer Guide</h5>
                     <p class="card-text">View submissions, score answers, leave comments.</p>
-                    {{-- <a href="{{ asset('guide-files/reviewer-guide.pdf') }}" target="_blank" class="btn btn-success">View PDF</a> --}}
+                    <a href="{{ asset('guide-files/reviewer-guide.pdf') }}" target="_blank" class="btn btn-success">View PDF</a>
                 </div>
             </div>
         </div>
