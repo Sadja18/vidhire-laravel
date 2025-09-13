@@ -134,7 +134,11 @@ class AdminController extends Controller
 
     public function destroyCandidateLink(\App\Models\CandidateLink $link)
     {
+        $interviewId = $link->interview_id; // or $link->interview->id if it’s a relation
         $link->delete();
-        return redirect()->route('admin.candidate_links.dashboard')->with('success', 'Candidate link deleted.');
+
+        return redirect()
+            ->route('admin.candidate_links.dashboard', ['interview' => $interviewId])
+            ->with('success', 'Candidate link deleted.');
     }
 }
